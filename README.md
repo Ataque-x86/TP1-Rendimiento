@@ -5,8 +5,8 @@
 - `src/`: códigos fuente en C del experimento (`test_gprof.c`, `test_gprof_new.c`).
 - `pio_src/`: firmware del experimento en ESP8266 para PlatformIO (`main.cpp`).
 - `platformio.ini`: configuración del proyecto PlatformIO.
-- `results/`: salidas de análisis generadas (`analysis.txt`).
-- `images/`: capturas usadas en el informe.
+- `results/`: salidas de análisis generadas (`analysis.txt`, `gprof_callgraph.dot`).
+- `images/`: capturas usadas en el informe (`gprof2dot_callgraph.png` y figuras del reporte).
 
 ## Parte 1: Benchmarks y tareas diarias
 
@@ -330,6 +330,13 @@ Según el call graph:
 </p>
 <p align="center" style="margin: 2px 0 12px 0;"><sub>Figura 7: Sección Call graph de <code>results/analysis.txt</code>.</sub></p>
 
+Como complemento, también se generó una visualización del call graph en formato grafo a partir del reporte de `gprof`.
+
+<p align="center" style="margin: 0;">
+    <img src="images/gprof2dot_callgraph.png" alt="Visualización del call graph generado desde gprof" width="700">
+</p>
+<p align="center" style="margin: 2px 0 12px 0;"><sub>Figura 7b: Visualización del call graph generada desde <code>results/analysis.txt</code>.</sub></p>
+
 ### 2.5 Observaciones a partir de gprof
 
 A partir del análisis del reporte, se observó que el tiempo de ejecución se concentra en tres funciones, cada una llamada una sola vez:
@@ -471,7 +478,7 @@ $$T \approx \frac{N_{ciclos}}{f}$$
 
 Por eso, al duplicar la frecuencia ($f_2 = 2f_1$), idealmente el tiempo se reduce a la mitad ($T_2 \approx T_1/2$).
 
-El speedup es la razon entre rendimiento mejorado y rendimiento original:
+El speedup es la razón entre rendimiento mejorado y rendimiento original:
 
 $$S = \frac{R_{mejorado}}{R_{original}}$$
 
@@ -479,7 +486,7 @@ Como $R \propto 1/T$, para la misma carga se usa de forma equivalente:
 
 $$S = \frac{T_{original}}{T_{mejorado}}$$
 
-Aunque el caso ideal al duplicar frecuencia da $S=2$, en la practica puede ser menor por sobrecostos fijos (arranque, llamadas, interrupciones, perifericos y serial) y por componentes que no escalan estrictamente con CPU.
+Aunque el caso ideal al duplicar frecuencia da $S=2$, en la práctica puede ser menor por sobrecostos fijos (arranque, llamadas, interrupciones, periféricos y serial) y por componentes que no escalan estrictamente con CPU.
 
 ### 3.3 Código de prueba (ESP8266)
 
@@ -604,7 +611,7 @@ Notas:
 4. Registrar todos los tiempos en segundos y calcular promedio por caso.
 5. Verificar que los tiempos de cada corrida queden en un rango razonable (ideal: 5 a 15 s); si no, ajustar `N_INT` y `N_FLOAT` y repetir.
 
-Formula usada para speedup:
+Fórmula usada para speedup:
 
 $$S=\frac{T_{f\,baja}}{T_{f\,alta}}$$
 
