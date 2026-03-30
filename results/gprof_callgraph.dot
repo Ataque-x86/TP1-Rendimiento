@@ -1,0 +1,13 @@
+digraph {
+	tooltip=" "
+	graph [fontname=Arial, nodesep=0.125, ranksep=0.25];
+	node [fontcolor=white, fontname=Arial, height=0, shape=box, style=filled, width=0];
+	edge [fontname=Arial];
+	1 [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="main\n100.00%\n(0.00%)"];
+	1 -> 2 [arrowsize="0.82", color="#91ce07", fontcolor="#91ce07", fontsize="10.00", label="67.29%\n1×", labeldistance="2.69", penwidth="2.69"];
+	1 -> 3 [arrowsize="0.57", color="#0b9e71", fontcolor="#0b9e71", fontsize="10.00", label="32.71%\n1×", labeldistance="1.31", penwidth="1.31"];
+	2 [color="#91ce07", fontcolor="#ffffff", fontsize="10.00", label="func1\n67.29%\n(37.22%)\n1×"];
+	2 -> 4 [arrowsize="0.55", color="#0c9a7d", fontcolor="#0c9a7d", fontsize="10.00", label="30.08%\n1×", labeldistance="1.20", penwidth="1.20"];
+	3 [color="#0b9e71", fontcolor="#ffffff", fontsize="10.00", label="func2\n32.71%\n(32.71%)\n1×"];
+	4 [color="#0c9a7d", fontcolor="#ffffff", fontsize="10.00", label="new_func1\n30.08%\n(30.08%)\n1×"];
+}
